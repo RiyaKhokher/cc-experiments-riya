@@ -1,0 +1,31 @@
+experinment-1.1
+
+contain duplicate - 1 (leetcode #217)
+code -
+class Solution:
+    def containsDuplicate(self, nums):
+        for i in range(len(nums)):
+            if nums.count(nums[i]) > 1:
+                return True
+        return False
+
+contain duplicate - 2 (leetcode #219)
+code - 
+#include <unordered_map>
+using namespace std;
+
+class Solution {
+public:
+    bool containsNearbyDuplicate(vector<int>& nums, int k) {
+        unordered_map<int,int> m;
+
+        for(int i = 0; i < nums.size(); i++) {
+            if(m.count(nums[i]) && i - m[nums[i]] <= k)
+                return true;
+
+            m[nums[i]] = i;
+        }
+
+        return false;
+    }
+};
